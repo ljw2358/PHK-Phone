@@ -2,320 +2,226 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>PHK Phone</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHK Phone | Global Future Communication</title>
-
 <style>
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background: #2b004f;
+    background: linear-gradient(180deg, #2b0a4a, #4b1373);
     color: #ffffff;
 }
-
-header {
-    padding: 30px;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-nav {
-    text-align: center;
+.container {
+    max-width: 420px;
+    margin: auto;
     padding: 20px;
 }
-
-nav button {
-    margin: 6px;
-    padding: 12px 24px;
+h1 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+.lang-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 25px;
+}
+.lang-buttons button {
+    padding: 8px 14px;
+    border-radius: 8px;
     border: none;
-    border-radius: 10px;
     background: #ffffff;
-    color: #2b004f;
-    cursor: pointer;
-    font-size: 15px;
+    color: #2b0a4a;
     font-weight: bold;
+    cursor: pointer;
 }
-
-nav button:hover {
-    background: #d6b3ff;
-}
-
-section {
-    padding: 40px;
-    display: none;
-    max-width: 1100px;
-    margin: auto;
-}
-
-.active {
-    display: block;
-}
-
 .card {
-    background: rgba(255,255,255,0.12);
-    padding: 25px;
-    margin: 25px 0;
-    border-radius: 18px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 16px;
 }
-
-.card h2 {
+h2 {
     margin-top: 0;
-    color: #ffd6ff;
 }
-
 ul {
-    line-height: 1.8;
+    padding-left: 18px;
 }
-
 footer {
     text-align: center;
-    padding: 30px;
-    font-size: 14px;
-    opacity: 0.85;
-    background: rgba(0,0,0,0.2);
+    font-size: 13px;
+    opacity: 0.8;
+    margin-top: 25px;
 }
+a { color: #fff; }
 </style>
-
-<script>
-function showLang(lang) {
-    let sections = document.querySelectorAll("section");
-    sections.forEach(sec => sec.classList.remove("active"));
-    document.getElementById(lang).classList.add("active");
-}
-</script>
 </head>
 
 <body>
+<div class="container">
+    <h1>PHK Phone</h1>
 
-<header>PHK Phone</header>
+    <div class="lang-buttons">
+        <button onclick="setLang('en')">English</button>
+        <button onclick="setLang('ko')">한국어</button>
+        <button onclick="setLang('zh')">中文</button>
+        <button onclick="setLang('es')">Español</button>
+        <button onclick="setLang('ar')">العربية</button>
+    </div>
 
-<nav>
-<button onclick="showLang('en')">English</button>
-<button onclick="showLang('kr')">한국어</button>
-<button onclick="showLang('cn')">中文</button>
-<button onclick="showLang('ar')">العربية</button>
-<button onclick="showLang('es')">Español</button>
-</nav>
+    <div class="card">
+        <h2 id="title"></h2>
+        <p id="overview"></p>
+    </div>
 
-<!-- ================= ENGLISH ================= -->
-<section id="en" class="active">
+    <div class="card">
+        <h2 id="featuresTitle"></h2>
+        <ul id="features"></ul>
+    </div>
 
-<h1>PHK Phone – Beyond Earth Communication</h1>
+    <div class="card">
+        <h2 id="visionTitle"></h2>
+        <p id="vision"></p>
+    </div>
 
-<div class="card">
-<h2>Overview</h2>
-<p>
-PHK Phone is a next-generation mobile device designed to function anywhere on Earth.
-Powered by Artificial Sun charging technology and SpaceX satellite systems,
-it delivers uninterrupted communication across oceans, deserts, mountains,
-and isolated regions.
-</p>
+    <div class="card">
+        <h2 id="specTitle"></h2>
+        <ul id="specs"></ul>
+    </div>
+
+    <footer>
+        Contact: <a href="mailto:info@phkphone.com">info@phkphone.com</a><br>
+        © 2026 PHK Global Technology
+    </footer>
 </div>
 
-<div class="card">
-<h2>Core Technologies</h2>
-<ul>
-<li>Artificial Sun Energy Charging System</li>
-<li>SpaceX Satellite-Based Global Network</li>
-<li>AI-Driven Autonomous Signal Optimization</li>
-<li>Web3 Identity & Blockchain Security</li>
-<li>Emergency-First Global Coverage</li>
-</ul>
-</div>
+<script>
+const data = {
+en: {
+title: "Next Generation PHK Phone",
+overview: "PHK Phone is a revolutionary global communication device powered by Artificial Sun Charging and satellite integration. It enables communication anywhere on Earth, including oceans, deserts, mountains, and polar regions.",
+featuresTitle: "Key Features",
+features: [
+"Artificial Sun Ultra Charging",
+"Global Satellite Network",
+"Ocean and Remote Area Connectivity",
+"AI Personal Assistant",
+"Military Grade Security",
+"Unlimited Emergency Signal"
+],
+visionTitle: "Technology Vision",
+vision: "PHK Phone represents the future of decentralized communication combining Web3 technology and next generation energy systems.",
+specTitle: "Specifications",
+specs: [
+"Battery: Artificial Solar Reactor Cell",
+"Connectivity: Satellite + 6G Ready",
+"Processor: AI Quantum Mobile Chip",
+"Security: Blockchain Encryption"
+]
+},
+ko: {
+title: "차세대 PHK Phone",
+overview: "PHK Phone은 인공태양 충전 기술과 위성 통합으로 구동되는 혁신적인 글로벌 통신 기기입니다. 바다, 사막, 산악, 극지방을 포함한 지구 어디서든 통신이 가능합니다.",
+featuresTitle: "주요 기능",
+features: [
+"인공태양 초고속 충전",
+"글로벌 위성 네트워크",
+"오지·해양 통신 지원",
+"AI 개인 비서",
+"군사 등급 보안",
+"무제한 긴급 신호"
+],
+visionTitle: "기술 비전",
+vision: "PHK Phone은 Web3 기술과 차세대 에너지 시스템을 결합한 탈중앙 통신의 미래를 제시합니다.",
+specTitle: "사양",
+specs: [
+"배터리: 인공 태양 반응 셀",
+"연결성: 위성 + 6G 대응",
+"프로세서: AI 양자 모바일 칩",
+"보안: 블록체인 암호화"
+]
+},
+zh: {
+title: "下一代 PHK 手机",
+overview: "PHK 手机是一款由人工太阳充电和卫星系统驱动的革命性全球通信设备，可在海洋、沙漠、山区和极地等任何地方通信。",
+featuresTitle: "核心功能",
+features: [
+"人工太阳极速充电",
+"全球卫星网络",
+"偏远及海洋通信",
+"AI 个人助理",
+"军用级安全",
+"无限紧急信号"
+],
+visionTitle: "技术愿景",
+vision: "PHK 手机代表了结合 Web3 技术和新一代能源系统的去中心化通信未来。",
+specTitle: "规格",
+specs: [
+"电池：人工太阳反应电池",
+"连接：卫星 + 6G",
+"处理器：AI 量子移动芯片",
+"安全：区块链加密"
+]
+},
+es: {
+title: "PHK Phone de Nueva Generación",
+overview: "PHK Phone es un dispositivo global revolucionario impulsado por carga solar artificial e integración satelital, permitiendo comunicación en cualquier lugar del planeta.",
+featuresTitle: "Características Clave",
+features: [
+"Carga Ultra Artificial Solar",
+"Red Global Satelital",
+"Conectividad en zonas remotas",
+"Asistente Personal AI",
+"Seguridad de grado militar",
+"Señal de emergencia ilimitada"
+],
+visionTitle: "Visión Tecnológica",
+vision: "PHK Phone representa el futuro de la comunicación descentralizada combinando tecnología Web3 y sistemas energéticos avanzados.",
+specTitle: "Especificaciones",
+specs: [
+"Batería: Celda de reactor solar artificial",
+"Conectividad: Satélite + 6G",
+"Procesador: Chip móvil cuántico AI",
+"Seguridad: Encriptación blockchain"
+]
+},
+ar: {
+title: "هاتف PHK الجيل القادم",
+overview: "هاتف PHK هو جهاز اتصالات عالمي ثوري يعمل بالطاقة الشمسية الاصطناعية والتكامل مع الأقمار الصناعية، ويتيح الاتصال في أي مكان على الأرض.",
+featuresTitle: "الميزات الرئيسية",
+features: [
+"شحن فائق بالطاقة الشمسية الاصطناعية",
+"شبكة أقمار صناعية عالمية",
+"اتصال بالمناطق النائية والبحار",
+"مساعد شخصي ذكي",
+"أمان بمستوى عسكري",
+"إشارة طوارئ غير محدودة"
+],
+visionTitle: "الرؤية التقنية",
+vision: "يمثل هاتف PHK مستقبل الاتصالات اللامركزية من خلال دمج تقنية Web3 وأنظمة الطاقة المتقدمة.",
+specTitle: "المواصفات",
+specs: [
+"البطارية: خلية مفاعل شمسي اصطناعي",
+"الاتصال: أقمار صناعية + جاهز لـ 6G",
+"المعالج: شريحة كمومية ذكية",
+"الأمان: تشفير بلوكشين"
+]
+}
+};
 
-<div class="card">
-<h2>Use Cases</h2>
-<ul>
-<li>Maritime and deep-sea operations</li>
-<li>Space-adjacent and polar research</li>
-<li>Disaster zones and emergency rescue</li>
-<li>Military-grade secure communication</li>
-<li>Future decentralized societies</li>
-</ul>
-</div>
+function setLang(lang) {
+document.getElementById("title").innerText = data[lang].title;
+document.getElementById("overview").innerText = data[lang].overview;
+document.getElementById("featuresTitle").innerText = data[lang].featuresTitle;
+document.getElementById("features").innerHTML = data[lang].features.map(f => `<li>${f}</li>`).join("");
+document.getElementById("visionTitle").innerText = data[lang].visionTitle;
+document.getElementById("vision").innerText = data[lang].vision;
+document.getElementById("specTitle").innerText = data[lang].specTitle;
+document.getElementById("specs").innerHTML = data[lang].specs.map(s => `<li>${s}</li>`).join("");
+}
 
-<div class="card">
-<h2>Contact</h2>
-<p>Email: <a href="mailto:infi@phkphone.vom" style="color:white;">infi@phkphone.vom</a></p>
-</div>
-
-</section>
-
-<!-- ================= KOREAN ================= -->
-<section id="kr">
-
-<h1>PHK Phone – 지구를 넘어선 통신</h1>
-
-<div class="card">
-<h2>개요</h2>
-<p>
-PHK Phone은 인공태양 충전 기술과 SpaceX 위성 네트워크를 기반으로
-지구 어디서든 작동하는 차세대 이동 단말기입니다.
-바다 한가운데, 오지, 재난 지역에서도 통신이 가능합니다.
-</p>
-</div>
-
-<div class="card">
-<h2>핵심 기술</h2>
-<ul>
-<li>인공태양 에너지 충전 시스템</li>
-<li>SpaceX 글로벌 위성 통신</li>
-<li>AI 자동 신호 최적화</li>
-<li>Web3 기반 신원 및 보안</li>
-<li>긴급 상황 우선 연결</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>활용 분야</h2>
-<ul>
-<li>해상 및 원양 산업</li>
-<li>극지·우주 연계 연구</li>
-<li>재난 구조 및 긴급 통신</li>
-<li>군사 및 국가 보안</li>
-<li>미래 탈중앙 사회</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>문의</h2>
-<p>이메일: <a href="mailto:infi@phkphone.vom" style="color:white;">infi@phkphone.vom</a></p>
-</div>
-
-</section>
-
-<!-- ================= CHINESE ================= -->
-<section id="cn">
-
-<h1>PHK 手机 – 超越地球的通信</h1>
-
-<div class="card">
-<h2>产品概述</h2>
-<p>
-PHK 手机采用人造太阳充电技术与 SpaceX 卫星系统，
-可在全球任何地区实现稳定通信，包括海洋与极端环境。
-</p>
-</div>
-
-<div class="card">
-<h2>核心技术</h2>
-<ul>
-<li>人造太阳能源充电</li>
-<li>SpaceX 全球卫星网络</li>
-<li>人工智能信号优化</li>
-<li>Web3 区块链安全</li>
-<li>紧急通信优先系统</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>应用场景</h2>
-<ul>
-<li>海洋与航运产业</li>
-<li>极地与科研任务</li>
-<li>灾害应急通信</li>
-<li>高安全级别通信</li>
-<li>未来数字社会</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>联系我们</h2>
-<p>邮箱: <a href="mailto:infi@phkphone.vom" style="color:white;">infi@phkphone.vom</a></p>
-</div>
-
-</section>
-
-<!-- ================= ARABIC ================= -->
-<section id="ar" dir="rtl">
-
-<h1>هاتف PHK – اتصال بلا حدود</h1>
-
-<div class="card">
-<h2>نظرة عامة</h2>
-<p>
-هاتف PHK يعمل بتقنية الشحن عبر الشمس الصناعية
-وشبكة أقمار SpaceX، ليضمن الاتصال في أي مكان على الأرض.
-</p>
-</div>
-
-<div class="card">
-<h2>التقنيات الأساسية</h2>
-<ul>
-<li>طاقة الشمس الصناعية</li>
-<li>شبكة أقمار صناعية عالمية</li>
-<li>تحسين الإشارة بالذكاء الاصطناعي</li>
-<li>أمان Web3 وبلوك تشين</li>
-<li>اتصال طوارئ فوري</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>مجالات الاستخدام</h2>
-<ul>
-<li>الملاحة البحرية</li>
-<li>المناطق النائية</li>
-<li>الإنقاذ في الكوارث</li>
-<li>الاتصالات العسكرية</li>
-<li>المجتمعات المستقبلية</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>التواصل</h2>
-<p>البريد الإلكتروني: <a href="mailto:infi@phkphone.vom" style="color:white;">infi@phkphone.vom</a></p>
-</div>
-
-</section>
-
-<!-- ================= SPANISH ================= -->
-<section id="es">
-
-<h1>PHK Phone – Comunicación Sin Fronteras</h1>
-
-<div class="card">
-<h2>Descripción General</h2>
-<p>
-PHK Phone combina energía solar artificial y red satelital SpaceX
-para ofrecer comunicación global incluso en zonas extremas.
-</p>
-</div>
-
-<div class="card">
-<h2>Tecnologías Clave</h2>
-<ul>
-<li>Carga con sol artificial</li>
-<li>Satélites SpaceX</li>
-<li>Optimización por IA</li>
-<li>Seguridad Web3</li>
-<li>Comunicación de emergencia</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Aplicaciones</h2>
-<ul>
-<li>Industria marítima</li>
-<li>Investigación remota</li>
-<li>Gestión de desastres</li>
-<li>Comunicaciones seguras</li>
-<li>Sociedad digital futura</li>
-</ul>
-</div>
-
-<div class="card">
-<h2>Contacto</h2>
-<p>Email: <a href="mailto:infi@phkphone.vom" style="color:white;">infi@phkphone.vom</a></p>
-</div>
-
-</section>
-
-<footer>
-© 2026 PHK Global Technology<br>
-Contact: <a href="mailto:infi@phkphone.vom" style="color:white;">infi@phkphone.vom</a>
-</footer>
-
+setLang('en');
+</script>
 </body>
 </html>
