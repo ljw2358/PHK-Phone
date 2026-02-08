@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figure AI Global Guide</title>
+    <style>
+        :root { --deep-navy: #0A192F; --gold: #C5A059; --white: #FFFFFF; --gray: #E0E0E0; }
+        body { margin: 0; padding: 0; background-color: var(--deep-navy); color: var(--white); font-family: sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; transition: all 0.3s ease; }
+        
+        header { width: 100%; padding: 30px 20px; text-align: center; border-bottom: 1px solid var(--gold); }
+        .logo { font-size: 1.4rem; font-weight: bold; color: var(--gold); letter-spacing: 2px; margin-bottom: 10px; }
+        #headline { font-size: 1.1rem; font-weight: 300; line-height: 1.4; color: var(--gray); min-height: 3em; }
+
+        .lang-bar { display: flex; justify-content: center; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
+        .lang-btn { background: rgba(197, 160, 89, 0.1); border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; }
+        .lang-btn.active { background: var(--gold); color: var(--deep-navy); font-weight: bold; }
+
+        .content-container { width: 90%; max-width: 400px; margin-bottom: 40px; }
+        .expert-section { background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--gold); padding: 15px; margin-bottom: 15px; border-radius: 0 8px 8px 0; }
+        .expert-section.rtl { border-left: none; border-right: 4px solid var(--gold); border-radius: 8px 0 0 8px; text-align: right; }
+        .expert-section h2 { font-size: 0.95rem; color: var(--gold); margin: 0 0 5px 0; }
+        .expert-section p { font-size: 0.85rem; line-height: 1.4; color: var(--gray); margin: 0; }
+
+        .button-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+        .action-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 5px; font-size: 0.75rem; border-radius: 5px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">FIGURE AI MASTER</div>
+        <h1 id="headline">당신의 투자 철학에 깊이를 더하다</h1>
+    </header>
+
+    <div class="lang-bar">
+        <button class="lang-btn active" onclick="changeLang('ko', this)">KO</button>
+        <button class="lang-btn" onclick="changeLang('en', this)">EN</button>
+        <button class="lang-btn" onclick="changeLang('zh', this)">ZH</button>
+        <button class="lang-btn" onclick="changeLang('ar', this)">AR</button>
+        <button class="lang-btn" onclick="changeLang('es', this)">ES</button>
+    </div>
+
+    <div class="content-container" id="content">
+        <div class="expert-section">
+            <h2 id="t1">시장 통찰</h2>
+            <p id="d1">금융 전문가가 분석한 실시간 시장 흐름을 진단합니다.</p>
+        </div>
+        <div class="expert-section">
+            <h2 id="t2">자산 전략</h2>
+            <p id="d2">포트폴리오 최적화를 위한 프리미엄 전략을 제시합니다.</p>
+        </div>
+        <div class="button-group">
+            <div class="action-btn" id="b1">포트폴리오</div>
+            <div class="action-btn" id="b2">AI 분석</div>
+            <div class="action-btn" id="b3">상담</div>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            ko: { h: "당신의 투자 철학에 깊력을 더하다", t1: "시장 통찰", d1: "금융 전문가가 분석한 시장 흐름 진단", t2: "자산 전략", d2: "최적의 프리미엄 전략 제시", b1: "자산", b2: "AI분석", b3: "상담", dir: "ltr" },
+            en: { h: "Deepening Your Investment Philosophy", t1: "Market Insight", d1: "Real-time market analysis by experts", t2: "Asset Strategy", d2: "Premium portfolio optimization", b1: "Assets", b2: "AI Scan", b3: "Chat", dir: "ltr" },
+            zh: { h: "深耕您的投资哲学", t1: "市场洞察", d1: "专家分析的实时市场趋势诊断", t2: "资产策略", d2: "提供最佳溢价战略", b1: "组合", b2: "AI分析", b3: "咨询", dir: "ltr" },
+            ar: { h: "تعميق فلسفتك الاستثمارية", t1: "رؤية السوق", d1: "تشخيص اتجاهات السوق من قبل الخبراء", t2: "استراتيجية الأصول", d2: "تقديم أفضل الاستراتيجيات المتميزة", b1: "الأصول", b2: "تحليل AI", b3: "استشارة", dir: "rtl" },
+            es: { h: "Profundizando su filosofía de inversión", t1: "Visión del Mercado", d1: "Análisis de tendencias por expertos", t2: "Estrategia", d2: "Optimización de cartera premium", b1: "Cartera", b2: "IA Scan", b3: "Chat", dir: "ltr" }
+        };
+
+        function changeLang(lang, btn) {
+            const l = data[lang];
+            document.getElementById('headline').innerText = l.h;
+            document.getElementById('t1').innerText = l.t1;
+            document.getElementById('d1').innerText = l.d1;
+            document.getElementById('t2').innerText = l.t2;
+            document.getElementById('d2').innerText = l.d2;
+            document.getElementById('b1').innerText = l.b1;
+            document.getElementById('b2').innerText = l.b2;
+            document.getElementById('b3').innerText = l.b3;
+            
+            document.body.style.direction = l.dir;
+            const sections = document.querySelectorAll('.expert-section');
+            sections.forEach(s => l.dir === 'rtl' ? s.classList.add('rtl') : s.classList.remove('rtl'));
+            
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>
