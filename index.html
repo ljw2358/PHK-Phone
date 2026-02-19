@@ -1,227 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>PHK Phone</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(180deg, #2b0a4a, #4b1373);
-    color: #ffffff;
-}
-.container {
-    max-width: 420px;
-    margin: auto;
-    padding: 20px;
-}
-h1 {
-    text-align: center;
-    margin-bottom: 15px;
-}
-.lang-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 25px;
-}
-.lang-buttons button {
-    padding: 8px 14px;
-    border-radius: 8px;
-    border: none;
-    background: #ffffff;
-    color: #2b0a4a;
-    font-weight: bold;
-    cursor: pointer;
-}
-.card {
-    background: rgba(255,255,255,0.08);
-    border-radius: 16px;
-    padding: 18px;
-    margin-bottom: 16px;
-}
-h2 {
-    margin-top: 0;
-}
-ul {
-    padding-left: 18px;
-}
-footer {
-    text-align: center;
-    font-size: 13px;
-    opacity: 0.8;
-    margin-top: 25px;
-}
-a { color: #fff; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HK-PHONE: Neural Link Smartphone, Fusion Battery, and Holographic Interface by Hye-Gong">
+    <title>HK-PHONE | Connection Redefined</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@100;400;700&family=Noto+Sans+SC:wght@100;400;700&family=Noto+Sans+Arabic:wght@100;400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [1] COLORS & THEME - 초월적인 투명함과 빛의 조화 */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --neon-purple: #bc13fe;
+            --neon-blue: #00e5ff;
+            --deep-black: #030305;
+            --silver-text: #d1d1d6;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* [2] BASE SETUP */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--deep-black); 
+            color: var(--silver-text); 
+            font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* [3] HOLOGRAPHIC BACKGROUND */
+        .holo-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; overflow: hidden;
+        }
+        .aurora {
+            position: absolute; width: 150%; height: 150%;
+            background: radial-gradient(circle at 50% 50%, rgba(188, 19, 254, 0.1), rgba(0, 229, 255, 0.1), transparent);
+            filter: blur(100px); animation: rotateAurora 20s infinite linear;
+        }
+        @keyframes rotateAurora { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+
+        /* [4] NAVIGATION */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(3, 3, 5, 0.7); backdrop-filter: blur(25px);
+            border-bottom: 1px solid rgba(255,255,255,0.05); padding: 25px 60px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-family: 'Orbitron'; font-weight: 900; font-size: 1.8rem; letter-spacing: 5px; color: #fff; }
+        .logo span { background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .lang-switcher { display: flex; gap: 15px; }
+        .l-btn {
+            background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.1);
+            color: #fff; padding: 10px 22px; font-family: 'Orbitron'; font-size: 0.7rem;
+            cursor: pointer; transition: var(--transition); border-radius: 2px;
+        }
+        .l-btn:hover, .l-btn.active { 
+            background: #fff; color: #000; border-color: #fff;
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+
+        /* [5] HERO SECTION - THE NEXT CENTURY */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center;
+        }
+        .hero h1 { 
+            font-family: 'Orbitron'; font-size: clamp(3.5rem, 12vw, 9rem); font-weight: 900;
+            letter-spacing: -2px; margin-bottom: 10px; color: #fff;
+        }
+        .hero p { font-size: 1.5rem; color: #888; max-width: 800px; margin-bottom: 50px; font-weight: 200; }
+        
+        .device-preview {
+            width: 300px; height: 600px; background: var(--glass-bg);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 40px;
+            position: relative; box-shadow: 0 0 100px rgba(0, 229, 255, 0.1);
+            animation: floating 4s infinite ease-in-out;
+        }
+        @keyframes floating { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-20px);} }
+
+        /* [6] SECTION STYLES */
+        section { padding: 150px 0; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 50px; }
+        .lang-section { display: none; }
+        .lang-section.active { display: block; animation: contentReveal 1s ease-out; }
+        @keyframes contentReveal { from {opacity: 0; filter: blur(20px); transform: scale(1.1);} to {opacity: 1; filter: blur(0); transform: scale(1);} }
+
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .feature-card {
+            background: var(--glass-bg); padding: 60px; border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 30px; transition: var(--transition);
+        }
+        .feature-card:hover { border-color: var(--neon-blue); background: rgba(0, 229, 255, 0.02); }
+        .feature-card h3 { font-family: 'Orbitron'; font-size: 2rem; margin-bottom: 25px; color: #fff; }
+        
+        /* [7] TECH TABLE */
+        .tech-specs { margin-top: 100px; background: rgba(255,255,255,0.02); padding: 50px; border-radius: 20px; }
+        .tech-table { width: 100%; border-collapse: collapse; }
+        .tech-table th { text-align: left; padding: 25px; color: var(--neon-blue); border-bottom: 1px solid #333; font-family: 'Orbitron'; }
+        .tech-table td { padding: 25px; border-bottom: 1px solid #111; color: #888; font-size: 1.1rem; }
+
+        /* [8] NEURAL STATUS MONITOR */
+        .neural-monitor {
+            background: #000; border: 1px solid var(--neon-purple); padding: 40px;
+            font-family: 'Courier New', monospace; color: var(--neon-purple);
+            margin-top: 60px; border-radius: 10px;
+        }
+
+        /* [9] FOOTER */
+        footer { padding: 120px 0; background: #010101; text-align: center; border-top: 1px solid #111; }
+        .footer-logo { font-family: 'Orbitron'; font-size: 3rem; margin-bottom: 20px; font-weight: 900; }
+        .contact-mail { font-family: 'Orbitron'; font-size: 2rem; color: var(--neon-blue); text-decoration: none; display: block; margin: 40px 0; transition: 0.3s; }
+        .contact-mail:hover { text-shadow: 0 0 20px var(--neon-blue); }
+
+        /* [10] RTL FOR ARABIC */
+        .rtl { direction: rtl; text-align: right; }
+    </style>
 </head>
+<body onload="initHK()">
 
-<body>
-<div class="container">
-    <h1>PHK Phone</h1>
-
-    <div class="lang-buttons">
-        <button onclick="setLang('en')">English</button>
-        <button onclick="setLang('ko')">한국어</button>
-        <button onclick="setLang('zh')">中文</button>
-        <button onclick="setLang('es')">Español</button>
-        <button onclick="setLang('ar')">العربية</button>
+    <div class="holo-container">
+        <div class="aurora"></div>
     </div>
 
-    <div class="card">
-        <h2 id="title"></h2>
-        <p id="overview"></p>
+    <nav>
+        <div class="logo">HK-<span>PHONE</span></div>
+        <div class="lang-switcher">
+            <button class="l-btn active" onclick="setLang('en', this)">ENGLISH</button>
+            <button class="l-btn" onclick="setLang('kr', this)">한국어</button>
+            <button class="l-btn" onclick="setLang('cn', this)">中文</button>
+            <button class="l-btn" onclick="setLang('ar', this)">العربية</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="device-preview">
+            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:rgba(255,255,255,0.1); font-family:'Orbitron'; font-size:0.8rem;">TRANSPARENT DISPLAY</div>
+        </div>
+        <h1 id="hero-h1">THE FUTURE IS HK</h1>
+        <p id="hero-p">More than a smartphone. A symbiotic extension of your consciousness. Powered by Figure AI and Fusion Energy.</p>
+        <button class="l-btn" style="padding: 15px 50px; font-size: 0.9rem;" onclick="window.scrollTo(0, 1000)">Specifications</button>
+    </section>
+
+    <div id="en" class="lang-section active">
+        <div class="container">
+            <h2>01. Next-Century Tech</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Neural Interface</h3>
+                    <p>No more touch. The HK-Phone links directly to your neural patterns, allowing you to browse, message, and create by thought alone.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Fusion Micro-Cell</h3>
+                    <p>Powered by a miniaturized HK-Fusion core. One charge lasts for 365 days of continuous high-performance use.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Quantum Link</h3>
+                    <p>Infinite bandwidth through quantum entanglement. Zero latency communication, even between Earth and Mars colonies.</p>
+                </div>
+            </div>
+
+            <div class="tech-specs">
+                <h2 style="font-size: 1.5rem; margin-bottom: 30px;">Hardware Specification v22.0</h2>
+                
+                <table class="tech-table">
+                    <tr><th>Component</th><th>HK-Phone One</th><th>HK-Phone Ultra</th></tr>
+                    <tr><td>Processor</td><td>Figure-AI Neural Core x1</td><td>Figure-AI Quantum Core x4</td></tr>
+                    <tr><td>Display</td><td>Holographic 8K Glass</td><td>Variable Density Light-Field</td></tr>
+                    <tr><td>Battery</td><td>Fusion Micro-Cell (1 Year)</td><td>Fusion Infinite-Link</td></tr>
+                    <tr><td>Body Material</td><td>Self-Healing Liquid Metal</td><td>Star-Ship Grade Diamond Alloy</td></tr>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <h2 id="featuresTitle"></h2>
-        <ul id="features"></ul>
+    <div id="kr" class="lang-section">
+        <div class="container">
+            <h2>01. 22세기형 통신 장치</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>뉴럴 인터페이스</h3>
+                    <p>터치는 과거의 유물입니다. 혜공 형님의 HK-Phone은 당신의 생각(뇌파)을 읽어 즉각적으로 반응합니다. 눈을 감고도 모든 작업이 가능합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>핵융합 배터리</h3>
+                    <p>HK-Fusion 기술로 구현된 초소형 핵융합 전지. 단 한 번의 충전으로 1년 내내 충전기 없이 자유를 누리십시오.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>홀로그래픽 디스플레이</h3>
+                    <p>물리적인 화면의 한계를 넘었습니다. 공중에 투사되는 완벽한 8K 홀로그램이 당신의 작업 공간을 무한대로 확장합니다.</p>
+                </div>
+            </div>
+
+            <div class="neural-monitor">
+                > HK-OS v.22.0.1 SYSTEM BOOT... DONE.<br>
+                > NEURAL LINK STABILITY: 99.99%<br>
+                > FUSION CELL CORE TEMP: 32.5°C (STABLE)<br>
+                > FIGURE-AI AGENT: "HELLO, CHAIRMAN HYE-GONG. I AM READY."<br>
+                > STATUS: <span style="color: var(--neon-blue);">FUTURE CONNECTED</span>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <h2 id="visionTitle"></h2>
-        <p id="vision"></p>
+    <div id="cn" class="lang-section">
+        <div class="container">
+            <h2 style="font-family: 'Noto Sans SC';">01. 下世纪通讯革命</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>脑机接口</h3>
+                    <p>无需触碰。HK-Phone 直接连接您的神经信号，实现真正的意念操控。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>核聚变微电池</h3>
+                    <p>内置 HK-Fusion 微型核心。充电一次，续航一年。彻底告别电量焦虑。</p>
+                </div>
+                <div class="feature-card">
+                    <h3>量子通讯</h3>
+                    <p>基于量子纠缠技术，实现零延迟的全球通讯，甚至覆盖地火航线。</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <h2 id="specTitle"></h2>
-        <ul id="specs"></ul>
+    <div id="ar" class="lang-section rtl">
+        <div class="container">
+            <h2>٠١. تقنيات القرن القادم</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>واجهة عصبية</h3>
+                    <p>لا مزيد من اللمس. يرتبط HK-Phone مباشرة بأنماطك العصبية، مما يتيح لك التواصل من خلال التفكير فقط.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>خلية الاندماج النووي</h3>
+                    <p>مشغل بواسطة تقنية HK-Fusion. شحنة واحدة تكفي لمدة عام كامل من الاستخدام المكثف.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>
-        Contact: <a href="mailto:info@phkphone.com">info@phkphone.com</a><br>
-        © 2026 PHK Global Technology
+        <div class="container">
+            <div class="footer-logo">HK-<span>PHONE</span></div>
+            <p style="color: #444; letter-spacing: 5px;">A HYE-GONG LEGACY PRODUCT</p>
+            <a href="mailto:info@hkphone.com" class="contact-mail">info@hkphone.com</a>
+            
+            <div style="margin-top: 60px; font-size: 0.9rem; color: #222;">
+                GENEVA | SEOUL | SILICON VALLEY | MARS BASE ONE
+            </div>
+            
+            <p style="margin-top: 50px; font-size: 0.75rem; color: #1a1a1a; font-family:'Orbitron';">
+                &copy; 2026 HK-PHONE GROUP. ALL RIGHTS RESERVED.<br>
+                AI ARCHITECTURE BY BINI. POWERED BY NEXT-CENTURY LOGIC.
+            </p>
+        </div>
     </footer>
-</div>
 
-<script>
-const data = {
-en: {
-title: "Next Generation PHK Phone",
-overview: "PHK Phone is a revolutionary global communication device powered by Artificial Sun Charging and satellite integration. It enables communication anywhere on Earth, including oceans, deserts, mountains, and polar regions.",
-featuresTitle: "Key Features",
-features: [
-"Artificial Sun Ultra Charging",
-"Global Satellite Network",
-"Ocean and Remote Area Connectivity",
-"AI Personal Assistant",
-"Military Grade Security",
-"Unlimited Emergency Signal"
-],
-visionTitle: "Technology Vision",
-vision: "PHK Phone represents the future of decentralized communication combining Web3 technology and next generation energy systems.",
-specTitle: "Specifications",
-specs: [
-"Battery: Artificial Solar Reactor Cell",
-"Connectivity: Satellite + 6G Ready",
-"Processor: AI Quantum Mobile Chip",
-"Security: Blockchain Encryption"
-]
-},
-ko: {
-title: "차세대 PHK Phone",
-overview: "PHK Phone은 인공태양 충전 기술과 위성 통합으로 구동되는 혁신적인 글로벌 통신 기기입니다. 바다, 사막, 산악, 극지방을 포함한 지구 어디서든 통신이 가능합니다.",
-featuresTitle: "주요 기능",
-features: [
-"인공태양 초고속 충전",
-"글로벌 위성 네트워크",
-"오지·해양 통신 지원",
-"AI 개인 비서",
-"군사 등급 보안",
-"무제한 긴급 신호"
-],
-visionTitle: "기술 비전",
-vision: "PHK Phone은 Web3 기술과 차세대 에너지 시스템을 결합한 탈중앙 통신의 미래를 제시합니다.",
-specTitle: "사양",
-specs: [
-"배터리: 인공 태양 반응 셀",
-"연결성: 위성 + 6G 대응",
-"프로세서: AI 양자 모바일 칩",
-"보안: 블록체인 암호화"
-]
-},
-zh: {
-title: "下一代 PHK 手机",
-overview: "PHK 手机是一款由人工太阳充电和卫星系统驱动的革命性全球通信设备，可在海洋、沙漠、山区和极地等任何地方通信。",
-featuresTitle: "核心功能",
-features: [
-"人工太阳极速充电",
-"全球卫星网络",
-"偏远及海洋通信",
-"AI 个人助理",
-"军用级安全",
-"无限紧急信号"
-],
-visionTitle: "技术愿景",
-vision: "PHK 手机代表了结合 Web3 技术和新一代能源系统的去中心化通信未来。",
-specTitle: "规格",
-specs: [
-"电池：人工太阳反应电池",
-"连接：卫星 + 6G",
-"处理器：AI 量子移动芯片",
-"安全：区块链加密"
-]
-},
-es: {
-title: "PHK Phone de Nueva Generación",
-overview: "PHK Phone es un dispositivo global revolucionario impulsado por carga solar artificial e integración satelital, permitiendo comunicación en cualquier lugar del planeta.",
-featuresTitle: "Características Clave",
-features: [
-"Carga Ultra Artificial Solar",
-"Red Global Satelital",
-"Conectividad en zonas remotas",
-"Asistente Personal AI",
-"Seguridad de grado militar",
-"Señal de emergencia ilimitada"
-],
-visionTitle: "Visión Tecnológica",
-vision: "PHK Phone representa el futuro de la comunicación descentralizada combinando tecnología Web3 y sistemas energéticos avanzados.",
-specTitle: "Especificaciones",
-specs: [
-"Batería: Celda de reactor solar artificial",
-"Conectividad: Satélite + 6G",
-"Procesador: Chip móvil cuántico AI",
-"Seguridad: Encriptación blockchain"
-]
-},
-ar: {
-title: "هاتف PHK الجيل القادم",
-overview: "هاتف PHK هو جهاز اتصالات عالمي ثوري يعمل بالطاقة الشمسية الاصطناعية والتكامل مع الأقمار الصناعية، ويتيح الاتصال في أي مكان على الأرض.",
-featuresTitle: "الميزات الرئيسية",
-features: [
-"شحن فائق بالطاقة الشمسية الاصطناعية",
-"شبكة أقمار صناعية عالمية",
-"اتصال بالمناطق النائية والبحار",
-"مساعد شخصي ذكي",
-"أمان بمستوى عسكري",
-"إشارة طوارئ غير محدودة"
-],
-visionTitle: "الرؤية التقنية",
-vision: "يمثل هاتف PHK مستقبل الاتصالات اللامركزية من خلال دمج تقنية Web3 وأنظمة الطاقة المتقدمة.",
-specTitle: "المواصفات",
-specs: [
-"البطارية: خلية مفاعل شمسي اصطناعي",
-"الاتصال: أقمار صناعية + جاهز لـ 6G",
-"المعالج: شريحة كمومية ذكية",
-"الأمان: تشفير بلوكشين"
-]
-}
-};
+    <script>
+        // [1] Init Visuals
+        function initHK() {
+            console.log("HK-PHONE OS INITIALIZED. WELCOME HYE-GONG.");
+        }
 
-function setLang(lang) {
-document.getElementById("title").innerText = data[lang].title;
-document.getElementById("overview").innerText = data[lang].overview;
-document.getElementById("featuresTitle").innerText = data[lang].featuresTitle;
-document.getElementById("features").innerHTML = data[lang].features.map(f => `<li>${f}</li>`).join("");
-document.getElementById("visionTitle").innerText = data[lang].visionTitle;
-document.getElementById("vision").innerText = data[lang].vision;
-document.getElementById("specTitle").innerText = data[lang].specTitle;
-document.getElementById("specs").innerHTML = data[lang].specs.map(s => `<li>${s}</li>`).join("");
-}
+        // [2] Language Switch Logic
+        function setLang(lang, btn) {
+            document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-setLang('en');
-</script>
+            document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(lang).classList.add('active');
+
+            if(lang === 'ar') document.body.classList.add('rtl');
+            else document.body.classList.remove('rtl');
+
+            // Dynamic Hero Update
+            const h1s = { en: "THE FUTURE IS HK", kr: "미래는 HK입니다", cn: "未来已至 HK", ar: "المستقبل هو HK" };
+            document.getElementById('hero-h1').innerText = h1s[lang];
+        }
+
+        // [3] Background Animation Parallax
+        window.addEventListener('mousemove', (e) => {
+            const aurora = document.querySelector('.aurora');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            aurora.style.transform = `translate(${x * 50}px, ${y * 50}px) rotate(${x * 360}px)`;
+        });
+    </script>
 </body>
 </html>
