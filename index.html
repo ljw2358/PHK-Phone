@@ -1,291 +1,226 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HK-PHONE: Neural Link Smartphone, Fusion Battery, and Holographic Interface by Hye-Gong">
-    <title>HK-PHONE | Connection Redefined</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@100;400;700&family=Noto+Sans+SC:wght@100;400;700&family=Noto+Sans+Arabic:wght@100;400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* [1] COLORS & THEME - 초월적인 투명함과 빛의 조화 */
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --neon-purple: #bc13fe;
-            --neon-blue: #00e5ff;
-            --deep-black: #030305;
-            --silver-text: #d1d1d6;
-            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HK PHONE | The Future of Communication</title>
 
-        /* [2] BASE SETUP */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: var(--deep-black); 
-            color: var(--silver-text); 
-            font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.5;
-        }
+<style>
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:radial-gradient(circle at top,#0b1020,#000000 70%);
+color:#e8f1ff;
+overflow-x:hidden;
+}
 
-        /* [3] HOLOGRAPHIC BACKGROUND */
-        .holo-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; overflow: hidden;
-        }
-        .aurora {
-            position: absolute; width: 150%; height: 150%;
-            background: radial-gradient(circle at 50% 50%, rgba(188, 19, 254, 0.1), rgba(0, 229, 255, 0.1), transparent);
-            filter: blur(100px); animation: rotateAurora 20s infinite linear;
-        }
-        @keyframes rotateAurora { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+.container{
+max-width:1100px;
+margin:auto;
+padding:80px 30px;
+animation:fadeIn 1.5s ease-in-out;
+}
 
-        /* [4] NAVIGATION */
-        nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(3, 3, 5, 0.7); backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255,255,255,0.05); padding: 25px 60px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .logo { font-family: 'Orbitron'; font-weight: 900; font-size: 1.8rem; letter-spacing: 5px; color: #fff; }
-        .logo span { background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .lang-switcher { display: flex; gap: 15px; }
-        .l-btn {
-            background: var(--glass-bg); border: 1px solid rgba(255,255,255,0.1);
-            color: #fff; padding: 10px 22px; font-family: 'Orbitron'; font-size: 0.7rem;
-            cursor: pointer; transition: var(--transition); border-radius: 2px;
-        }
-        .l-btn:hover, .l-btn.active { 
-            background: #fff; color: #000; border-color: #fff;
-            box-shadow: 0 0 30px rgba(255,255,255,0.2);
-        }
+h1{
+font-size:58px;
+color:#00f0ff;
+letter-spacing:4px;
+text-shadow:0 0 30px rgba(0,240,255,0.7);
+margin-bottom:10px;
+}
 
-        /* [5] HERO SECTION - THE NEXT CENTURY */
-        .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center;
-        }
-        .hero h1 { 
-            font-family: 'Orbitron'; font-size: clamp(3.5rem, 12vw, 9rem); font-weight: 900;
-            letter-spacing: -2px; margin-bottom: 10px; color: #fff;
-        }
-        .hero p { font-size: 1.5rem; color: #888; max-width: 800px; margin-bottom: 50px; font-weight: 200; }
-        
-        .device-preview {
-            width: 300px; height: 600px; background: var(--glass-bg);
-            border: 1px solid rgba(255,255,255,0.2); border-radius: 40px;
-            position: relative; box-shadow: 0 0 100px rgba(0, 229, 255, 0.1);
-            animation: floating 4s infinite ease-in-out;
-        }
-        @keyframes floating { 0%, 100% {transform: translateY(0);} 50% {transform: translateY(-20px);} }
+h2{
+color:#7fdfff;
+margin-top:50px;
+}
 
-        /* [6] SECTION STYLES */
-        section { padding: 150px 0; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 50px; }
-        .lang-section { display: none; }
-        .lang-section.active { display: block; animation: contentReveal 1s ease-out; }
-        @keyframes contentReveal { from {opacity: 0; filter: blur(20px); transform: scale(1.1);} to {opacity: 1; filter: blur(0); transform: scale(1);} }
+p{
+line-height:1.9;
+font-size:18px;
+}
 
-        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
-        .feature-card {
-            background: var(--glass-bg); padding: 60px; border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 30px; transition: var(--transition);
-        }
-        .feature-card:hover { border-color: var(--neon-blue); background: rgba(0, 229, 255, 0.02); }
-        .feature-card h3 { font-family: 'Orbitron'; font-size: 2rem; margin-bottom: 25px; color: #fff; }
-        
-        /* [7] TECH TABLE */
-        .tech-specs { margin-top: 100px; background: rgba(255,255,255,0.02); padding: 50px; border-radius: 20px; }
-        .tech-table { width: 100%; border-collapse: collapse; }
-        .tech-table th { text-align: left; padding: 25px; color: var(--neon-blue); border-bottom: 1px solid #333; font-family: 'Orbitron'; }
-        .tech-table td { padding: 25px; border-bottom: 1px solid #111; color: #888; font-size: 1.1rem; }
+.buttons{
+position:fixed;
+top:20px;
+right:20px;
+}
 
-        /* [8] NEURAL STATUS MONITOR */
-        .neural-monitor {
-            background: #000; border: 1px solid var(--neon-purple); padding: 40px;
-            font-family: 'Courier New', monospace; color: var(--neon-purple);
-            margin-top: 60px; border-radius: 10px;
-        }
+button{
+background:transparent;
+border:1px solid #00f0ff;
+color:#00f0ff;
+padding:8px 16px;
+margin-left:8px;
+cursor:pointer;
+transition:0.3s;
+}
 
-        /* [9] FOOTER */
-        footer { padding: 120px 0; background: #010101; text-align: center; border-top: 1px solid #111; }
-        .footer-logo { font-family: 'Orbitron'; font-size: 3rem; margin-bottom: 20px; font-weight: 900; }
-        .contact-mail { font-family: 'Orbitron'; font-size: 2rem; color: var(--neon-blue); text-decoration: none; display: block; margin: 40px 0; transition: 0.3s; }
-        .contact-mail:hover { text-shadow: 0 0 20px var(--neon-blue); }
+button:hover{
+background:#00f0ff;
+color:#000;
+box-shadow:0 0 20px #00f0ff;
+}
 
-        /* [10] RTL FOR ARABIC */
-        .rtl { direction: rtl; text-align: right; }
-    </style>
+.glow-line{
+height:2px;
+width:100%;
+background:linear-gradient(90deg,transparent,#00f0ff,transparent);
+margin:40px 0;
+animation:slide 4s infinite linear;
+}
+
+.footer{
+margin-top:80px;
+font-size:14px;
+opacity:0.6;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes slide{
+0%{background-position:-500px;}
+100%{background-position:500px;}
+}
+</style>
 </head>
-<body onload="initHK()">
 
-    <div class="holo-container">
-        <div class="aurora"></div>
-    </div>
+<body>
 
-    <nav>
-        <div class="logo">HK-<span>PHONE</span></div>
-        <div class="lang-switcher">
-            <button class="l-btn active" onclick="setLang('en', this)">ENGLISH</button>
-            <button class="l-btn" onclick="setLang('kr', this)">한국어</button>
-            <button class="l-btn" onclick="setLang('cn', this)">中文</button>
-            <button class="l-btn" onclick="setLang('ar', this)">العربية</button>
-        </div>
-    </nav>
+<div class="buttons">
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('ko')">한국어</button>
+<button onclick="setLang('zh')">中文</button>
+<button onclick="setLang('ar')">العربية</button>
+</div>
 
-    <section class="hero">
-        <div class="device-preview">
-            <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:rgba(255,255,255,0.1); font-family:'Orbitron'; font-size:0.8rem;">TRANSPARENT DISPLAY</div>
-        </div>
-        <h1 id="hero-h1">THE FUTURE IS HK</h1>
-        <p id="hero-p">More than a smartphone. A symbiotic extension of your consciousness. Powered by Figure AI and Fusion Energy.</p>
-        <button class="l-btn" style="padding: 15px 50px; font-size: 0.9rem;" onclick="window.scrollTo(0, 1000)">Specifications</button>
-    </section>
+<div class="container" id="content"></div>
 
-    <div id="en" class="lang-section active">
-        <div class="container">
-            <h2>01. Next-Century Tech</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>Neural Interface</h3>
-                    <p>No more touch. The HK-Phone links directly to your neural patterns, allowing you to browse, message, and create by thought alone.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Fusion Micro-Cell</h3>
-                    <p>Powered by a miniaturized HK-Fusion core. One charge lasts for 365 days of continuous high-performance use.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Quantum Link</h3>
-                    <p>Infinite bandwidth through quantum entanglement. Zero latency communication, even between Earth and Mars colonies.</p>
-                </div>
-            </div>
+<script>
 
-            <div class="tech-specs">
-                <h2 style="font-size: 1.5rem; margin-bottom: 30px;">Hardware Specification v22.0</h2>
-                
-                <table class="tech-table">
-                    <tr><th>Component</th><th>HK-Phone One</th><th>HK-Phone Ultra</th></tr>
-                    <tr><td>Processor</td><td>Figure-AI Neural Core x1</td><td>Figure-AI Quantum Core x4</td></tr>
-                    <tr><td>Display</td><td>Holographic 8K Glass</td><td>Variable Density Light-Field</td></tr>
-                    <tr><td>Battery</td><td>Fusion Micro-Cell (1 Year)</td><td>Fusion Infinite-Link</td></tr>
-                    <tr><td>Body Material</td><td>Self-Healing Liquid Metal</td><td>Star-Ship Grade Diamond Alloy</td></tr>
-                </table>
-            </div>
-        </div>
-    </div>
+const translations = {
 
-    <div id="kr" class="lang-section">
-        <div class="container">
-            <h2>01. 22세기형 통신 장치</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>뉴럴 인터페이스</h3>
-                    <p>터치는 과거의 유물입니다. 혜공 형님의 HK-Phone은 당신의 생각(뇌파)을 읽어 즉각적으로 반응합니다. 눈을 감고도 모든 작업이 가능합니다.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>핵융합 배터리</h3>
-                    <p>HK-Fusion 기술로 구현된 초소형 핵융합 전지. 단 한 번의 충전으로 1년 내내 충전기 없이 자유를 누리십시오.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>홀로그래픽 디스플레이</h3>
-                    <p>물리적인 화면의 한계를 넘었습니다. 공중에 투사되는 완벽한 8K 홀로그램이 당신의 작업 공간을 무한대로 확장합니다.</p>
-                </div>
-            </div>
+en: `
+<h1>HK PHONE</h1>
+<p><strong>Beyond Smartphones. A New Communication Paradigm.</strong></p>
+<div class="glow-line"></div>
 
-            <div class="neural-monitor">
-                > HK-OS v.22.0.1 SYSTEM BOOT... DONE.<br>
-                > NEURAL LINK STABILITY: 99.99%<br>
-                > FUSION CELL CORE TEMP: 32.5°C (STABLE)<br>
-                > FIGURE-AI AGENT: "HELLO, CHAIRMAN HYE-GONG. I AM READY."<br>
-                > STATUS: <span style="color: var(--neon-blue);">FUTURE CONNECTED</span>
-            </div>
-        </div>
-    </div>
+<h2>Overview</h2>
+<p>HK PHONE is a next-generation intelligent communication device integrating satellite connectivity, quantum-grade encryption, AI-driven personal systems, and global smart infrastructure compatibility.</p>
 
-    <div id="cn" class="lang-section">
-        <div class="container">
-            <h2 style="font-family: 'Noto Sans SC';">01. 下世纪通讯革命</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>脑机接口</h3>
-                    <p>无需触碰。HK-Phone 直接连接您的神经信号，实现真正的意念操控。</p>
-                </div>
-                <div class="feature-card">
-                    <h3>核聚变微电池</h3>
-                    <p>内置 HK-Fusion 微型核心。充电一次，续航一年。彻底告别电量焦虑。</p>
-                </div>
-                <div class="feature-card">
-                    <h3>量子通讯</h3>
-                    <p>基于量子纠缠技术，实现零延迟的全球通讯，甚至覆盖地火航线。</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<h2>Core Technologies</h2>
+<p>
+• Satellite & Space Network Connectivity<br>
+• Quantum-Secure Communication Protocols<br>
+• AI Integrated Neural Assistant<br>
+• Advanced Energy-Efficient Chipset<br>
+• Smart City & IoT Ecosystem Integration
+</p>
 
-    <div id="ar" class="lang-section rtl">
-        <div class="container">
-            <h2>٠١. تقنيات القرن القادم</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>واجهة عصبية</h3>
-                    <p>لا مزيد من اللمس. يرتبط HK-Phone مباشرة بأنماطك العصبية، مما يتيح لك التواصل من خلال التفكير فقط.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>خلية الاندماج النووي</h3>
-                    <p>مشغل بواسطة تقنية HK-Fusion. شحنة واحدة تكفي لمدة عام كامل من الاستخدام المكثف.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<h2>Strategic Vision 2035</h2>
+<p>To eliminate communication barriers by creating a unified global network connecting Earth, air, and space in real time.</p>
 
-    <footer>
-        <div class="container">
-            <div class="footer-logo">HK-<span>PHONE</span></div>
-            <p style="color: #444; letter-spacing: 5px;">A HYE-GONG LEGACY PRODUCT</p>
-            <a href="mailto:info@hkphone.com" class="contact-mail">info@hkphone.com</a>
-            
-            <div style="margin-top: 60px; font-size: 0.9rem; color: #222;">
-                GENEVA | SEOUL | SILICON VALLEY | MARS BASE ONE
-            </div>
-            
-            <p style="margin-top: 50px; font-size: 0.75rem; color: #1a1a1a; font-family:'Orbitron';">
-                &copy; 2026 HK-PHONE GROUP. ALL RIGHTS RESERVED.<br>
-                AI ARCHITECTURE BY BINI. POWERED BY NEXT-CENTURY LOGIC.
-            </p>
-        </div>
-    </footer>
+<p><strong>Investment Highlights</strong><br>
+Global telecom disruption. Secure next-gen infrastructure. Scalable hardware + platform ecosystem.</p>
 
-    <script>
-        // [1] Init Visuals
-        function initHK() {
-            console.log("HK-PHONE OS INITIALIZED. WELCOME HYE-GONG.");
-        }
+<div class="footer">Contact: info@hkphone.com<br>© 2026 HK PHONE</div>
+`,
 
-        // [2] Language Switch Logic
-        function setLang(lang, btn) {
-            document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+ko: `
+<h1>HK PHONE</h1>
+<p><strong>스마트폰을 넘어, 새로운 통신의 패러다임.</strong></p>
+<div class="glow-line"></div>
 
-            document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(lang).classList.add('active');
+<h2>개요</h2>
+<p>HK PHONE은 위성 연결, 양자급 보안 암호화, AI 통합 개인 시스템, 스마트 인프라 호환 기술을 결합한 차세대 지능형 통신 디바이스입니다.</p>
 
-            if(lang === 'ar') document.body.classList.add('rtl');
-            else document.body.classList.remove('rtl');
+<h2>핵심 기술</h2>
+<p>
+• 위성 및 우주 네트워크 연결<br>
+• 양자 보안 통신 프로토콜<br>
+• AI 통합 지능형 어시스턴트<br>
+• 고효율 차세대 칩셋<br>
+• 스마트시티·IoT 생태계 통합
+</p>
 
-            // Dynamic Hero Update
-            const h1s = { en: "THE FUTURE IS HK", kr: "미래는 HK입니다", cn: "未来已至 HK", ar: "المستقبل هو HK" };
-            document.getElementById('hero-h1').innerText = h1s[lang];
-        }
+<h2>비전 2035</h2>
+<p>지상과 공중, 우주를 실시간으로 연결하는 통합 글로벌 네트워크를 구축하여 통신 장벽을 제거합니다.</p>
 
-        // [3] Background Animation Parallax
-        window.addEventListener('mousemove', (e) => {
-            const aurora = document.querySelector('.aurora');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            aurora.style.transform = `translate(${x * 50}px, ${y * 50}px) rotate(${x * 360}px)`;
-        });
-    </script>
+<p><strong>투자 포인트</strong><br>
+글로벌 통신 시장 혁신. 차세대 보안 인프라. 확장 가능한 디바이스 + 플랫폼 모델.</p>
+
+<div class="footer">문의: info@hkphone.com<br>© 2026 HK PHONE</div>
+`,
+
+zh: `
+<h1>HK PHONE</h1>
+<p><strong>超越智能手机，引领未来通信。</strong></p>
+<div class="glow-line"></div>
+
+<h2>概述</h2>
+<p>HK PHONE 是融合卫星通信、量子级加密、AI智能系统及全球智能基础设施的下一代通信设备。</p>
+
+<h2>核心技术</h2>
+<p>
+• 卫星与太空网络连接<br>
+• 量子安全通信协议<br>
+• AI智能助手系统<br>
+• 高效能芯片架构<br>
+• 智慧城市与物联网整合
+</p>
+
+<h2>2035战略愿景</h2>
+<p>构建连接地面、空中与太空的全球实时通信网络。</p>
+
+<p><strong>投资亮点</strong><br>
+全球通信革命，安全基础设施升级，可扩展硬件与平台生态。</p>
+
+<div class="footer">联系: info@hkphone.com<br>© 2026 HK PHONE</div>
+`,
+
+ar: `
+<h1>HK PHONE</h1>
+<p><strong>ما بعد الهواتف الذكية. عصر جديد للاتصال.</strong></p>
+<div class="glow-line"></div>
+
+<h2>نظرة عامة</h2>
+<p>HK PHONE جهاز اتصال ذكي من الجيل القادم يدمج الاتصال عبر الأقمار الصناعية، تشفير كمي متقدم، وأنظمة ذكاء اصطناعي متكاملة.</p>
+
+<h2>التقنيات الأساسية</h2>
+<p>
+• اتصال عبر الأقمار الصناعية والفضاء<br>
+• بروتوكولات اتصال آمنة كمياً<br>
+• مساعد ذكي مدعوم بالذكاء الاصطناعي<br>
+• شريحة عالية الكفاءة في استهلاك الطاقة<br>
+• تكامل مع المدن الذكية وإنترنت الأشياء
+</p>
+
+<h2>رؤية 2035</h2>
+<p>إنشاء شبكة اتصالات عالمية موحدة تربط الأرض والجو والفضاء في الوقت الحقيقي.</p>
+
+<p><strong>فرصة استثمارية</strong><br>
+ثورة في قطاع الاتصالات العالمي، بنية تحتية آمنة، نظام متكامل للأجهزة والمنصات.</p>
+
+<div class="footer">البريد: info@hkphone.com<br>© 2026 HK PHONE</div>
+`
+};
+
+function setLang(lang){
+document.getElementById("content").innerHTML = translations[lang];
+if(lang==="ar"){document.body.dir="rtl";}
+else{document.body.dir="ltr";}
+}
+
+function autoDetect(){
+let l=navigator.language.substring(0,2);
+if(translations[l]){setLang(l);} else{setLang("en");}
+}
+
+autoDetect();
+
+</script>
+
 </body>
 </html>
